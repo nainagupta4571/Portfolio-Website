@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Head from "next/head";
 import { FaGithub, FaLinkedin, FaEnvelope, FaCode, FaPhoneAlt, FaMapMarkerAlt, FaInstagram, FaTwitter } from "react-icons/fa";
-import { motion } from 'framer-motion';
+import { motion, HTMLMotionProps } from 'framer-motion'; // Ensure HTMLMotionProps is imported
 import { useState } from "react";
 
 export default function Home() {
@@ -97,7 +97,7 @@ export default function Home() {
                 alt="Chandni Gupta"
                 width={200}
                 height={300}
-                className="rounded-lg image" // Moved className here
+                className="rounded-lg image" // This was already correctly fixed
               />
             </motion.div>
             <div className="content">
@@ -148,8 +148,9 @@ export default function Home() {
                 Structures and Algorithms. Passionate about building efficient and scalable applications.
               </motion.p>
 
+              {/* Corrected: Applying type assertion for className */}
               <motion.div
-                className="social-links"
+                className="social-links" as="div" // Added as="div"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 1.8 }} // Added a delay
@@ -248,13 +249,13 @@ export default function Home() {
             {/* Skills Section */}
             {activeTab === 'Skills' && (
               <motion.div
-                className="skills-container"
+                className="skills-container" as="div" // Added as="div"
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: false, amount: 0.3 }}
               >
-                <motion.div className="skills-left" variants={itemVariants}>
+                <motion.div className="skills-left" as="div" variants={itemVariants}> {/* Added as="div" */}
                   <h1 className="section-header"><span>Technical Skills</span></h1>
                   {[
                     { name: 'HTML', level: '90%' },
@@ -263,11 +264,11 @@ export default function Home() {
                     { name: 'ReactJS', level: '75%' },
                     { name: 'Next.js', level: '70%' },
                   ].map(skill => (
-                    <motion.div key={skill.name} className="line-bar-skill" variants={itemVariants}>
+                    <motion.div key={skill.name} className="line-bar-skill" as="div" variants={itemVariants}> {/* Added as="div" */}
                       <label>{skill.name}</label>
                       <div className="bar-bg">
                         <motion.div
-                          className="bar-fill"
+                          className="bar-fill" as="div" // Added as="div"
                           style={{ width: 0 }} // Start with 0 width for animation
                           animate={{ width: skill.level }}
                           transition={{ duration: 1.5, ease: "easeOut" }}
@@ -278,7 +279,7 @@ export default function Home() {
                   ))}
                 </motion.div>
 
-                <motion.div className="skills-right" variants={itemVariants}>
+                <motion.div className="skills-right" as="div" variants={itemVariants}> {/* Added as="div" */}
                   <h1 className="section-header"><span>Professional Skills</span></h1>
                   <div className="radial-bars">
                     {[
@@ -287,11 +288,11 @@ export default function Home() {
                       { name: 'Teamwork', percent: 75 },
                       { name: 'Leadership', percent: 85 }
                     ].map(skill => (
-                      <motion.div key={skill.name} className="radial-bar" variants={itemVariants}>
+                      <motion.div key={skill.name} className="radial-bar" as="div" variants={itemVariants}> {/* Added as="div" */}
                         <svg viewBox="0 0 36 36" className="circular-chart">
                           <path className="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
                           <motion.path
-                            className="circle"
+                            className="circle" as="path" // Added as="path" - important for SVG elements
                             strokeDasharray="0, 100" // Start with 0 for animation
                             animate={{ strokeDasharray: `${skill.percent}, 100` }}
                             transition={{ duration: 1.5, ease: "easeOut" }}
@@ -317,7 +318,7 @@ export default function Home() {
                 viewport={{ once: false, amount: 0.3 }}
               >
                 <div className="flex flex-col md:flex-row gap-6 justify-center items-stretch text-left">
-                  <motion.div className="bg-white rounded-lg shadow-sm p-6 flex-1 max-w-sm border border-gray-100" variants={itemVariants}>
+                  <motion.div className="bg-white rounded-lg shadow-sm p-6 flex-1 max-w-sm border border-gray-100" as="div" variants={itemVariants}> {/* Added as="div" */}
                     <h3 className="text-xl font-semibold text-gray-800 mb-1">B.Tech in Computer Science</h3>
                     <p className="text-gray-700 font-medium mb-1">Galgotias College of Engineering and Technology, Greater Noida</p>
                     <p className="text-gray-600 text-sm mb-1">2021 - 2025</p>
@@ -325,7 +326,7 @@ export default function Home() {
                       CGPA: <span className="font-semibold text-gray-800">8.7 / 10</span>
                     </p>
                   </motion.div>
-                  <motion.div className="bg-white rounded-lg shadow-sm p-6 flex-1 max-w-sm border border-gray-100" variants={itemVariants}>
+                  <motion.div className="bg-white rounded-lg shadow-sm p-6 flex-1 max-w-sm border border-gray-100" as="div" variants={itemVariants}> {/* Added as="div" */}
                     <h3 className="text-xl font-semibold text-gray-800 mb-1">Senior Secondary (12th CBSE)</h3>
                     <p className="text-gray-700 font-medium mb-1">Woodland Academy, Gorakhpur U.P. </p>
                     <p className="text-gray-600 text-sm mb-1">2019-2020</p>
@@ -333,7 +334,7 @@ export default function Home() {
                       Percentage: <span className="font-semibold text-gray-800">82.8%</span>
                     </p>
                   </motion.div>
-                  <motion.div className="bg-white rounded-lg shadow-sm p-6 flex-1 max-w-sm border border-gray-100" variants={itemVariants}>
+                  <motion.div className="bg-white rounded-lg shadow-sm p-6 flex-1 max-w-sm border border-gray-100" as="div" variants={itemVariants}> {/* Added as="div" */}
                     <h3 className="text-xl font-semibold text-gray-800 mb-1">Secondary (10th CBSE)</h3>
                     <p className="text-gray-700 font-medium mb-1">RPM Academy, Gorakhpur U.P. </p>
                     <p className="text-gray-600 text-sm mb-1">2017-2018</p>
@@ -359,11 +360,11 @@ export default function Home() {
                   <p className="text-gray-700 font-medium mb-1">ACKO</p>
                   <p className="text-gray-600 text-sm mb-2">Jan 2024 - Jan 2025</p>
                   <ul className="list-disc ml-6 text-gray-700 text-sm space-y-1">
-                    <motion.li variants={itemVariants}>Developed real-time dashboards for operations visibility.</motion.li>
-                    <motion.li variants={itemVariants}>Created reusable components using React, TypeScript, and Tailwind CSS.</motion.li>
-                    <motion.li variants={itemVariants}>Integrated secure APIs using Spring Boot with efficient backend logic.</motion.li>
-                    <motion.li variants={itemVariants}>Enhanced UX with lazy loading and performance optimization.</motion.li>
-                    <motion.li variants={itemVariants}>Collaborated actively in agile sprints and peer code reviews.</motion.li>
+                    <motion.li variants={itemVariants} as="li">Developed real-time dashboards for operations visibility.</motion.li> {/* Added as="li" */}
+                    <motion.li variants={itemVariants} as="li">Created reusable components using React, TypeScript, and Tailwind CSS.</motion.li> {/* Added as="li" */}
+                    <motion.li variants={itemVariants} as="li">Integrated secure APIs using Spring Boot with efficient backend logic.</motion.li> {/* Added as="li" */}
+                    <motion.li variants={itemVariants} as="li">Enhanced UX with lazy loading and performance optimization.</motion.li> {/* Added as="li" */}
+                    <motion.li variants={itemVariants} as="li">Collaborated actively in agile sprints and peer code reviews.</motion.li> {/* Added as="li" */}
                   </ul>
                 </div>
               </motion.div>
@@ -409,6 +410,7 @@ export default function Home() {
                     display: 'flex',        // Make it a flex container
                     flexDirection: 'column' // Stack children vertically
                   }}
+                  as="div" // Added as="div"
                   variants={itemVariants}
                 >
                   <Image
@@ -447,6 +449,7 @@ export default function Home() {
                     display: 'flex',        // Make it a flex container
                     flexDirection: 'column' // Stack children vertically
                   }}
+                  as="div" // Added as="div"
                   variants={itemVariants}
                 >
                   <Image
@@ -483,6 +486,7 @@ export default function Home() {
                     padding: '20px',
                     boxShadow: '0 4px 8px rgba(0,0,0,0.1)'
                   }}
+                  as="div" // Added as="div"
                   variants={itemVariants}
                 >
                   <Image
@@ -526,27 +530,28 @@ export default function Home() {
             {/* Contact Info Section */}
             <motion.div
               className="flex flex-col md:flex-row justify-around items-center mb-16 text-center"
+              as="div" // Added as="div"
               variants={containerVariants}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: false, amount: 0.3 }}
             >
               {/* Email */}
-              <motion.div className="flex flex-col items-center" variants={itemVariants}>
+              <motion.div className="flex flex-col items-center" as="div" variants={itemVariants}> {/* Added as="div" */}
                 <FaEnvelope style={{ fontSize: '2rem', color: 'rgb(109, 67, 0)' }} className="mb-2" />
                 <h3>Email</h3>
                 <p>nainagupta4571@gmail.com</p>
               </motion.div>
 
               {/* Phone */}
-              <motion.div className="flex flex-col items-center" variants={itemVariants}>
+              <motion.div className="flex flex-col items-center" as="div" variants={itemVariants}> {/* Added as="div" */}
                 <FaPhoneAlt style={{ fontSize: '2rem', color: 'rgb(109, 67, 0)' }} className="mb-2" />
                 <h3>Phone</h3>
                 <p>+91 854 307 8447</p>
               </motion.div>
 
               {/* Location */}
-              <motion.div className="flex flex-col items-center" variants={itemVariants}>
+              <motion.div className="flex flex-col items-center" as="div" variants={itemVariants}> {/* Added as="div" */}
                 <FaMapMarkerAlt style={{ fontSize: '2rem', color: 'rgb(109, 67, 0)' }} className="mb-2" />
                 <h3>Address</h3>
                 <p>Greater Noida, UP</p>
@@ -556,6 +561,7 @@ export default function Home() {
             {/* Social Links */}
             <motion.div
               className="text-center mt-8"
+              as="div" // Added as="div"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}

@@ -165,7 +165,6 @@ export default function Home() {
                 </a>
               </motion.div>
 
-              {/* Corrected: Applying direct type assertion for motion.a */}
               <motion.a {...{ href: "/Chandni_Gupta_SDE.pdf", download: true } as HTMLMotionProps<'a'>}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -284,8 +283,9 @@ export default function Home() {
                       <motion.div key={skill.name} {...{ className: "radial-bar" } as HTMLMotionProps<'div'>} variants={itemVariants}>
                         <svg viewBox="0 0 36 36" className="circular-chart">
                           <path className="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                          {/* Corrected: Removed as="path" from motion.path */}
                           <motion.path
-                            className="circle" as="path"
+                            className="circle"
                             strokeDasharray="0, 100"
                             animate={{ strokeDasharray: `${skill.percent}, 100` }}
                             transition={{ duration: 1.5, ease: "easeOut" }}

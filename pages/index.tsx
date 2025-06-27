@@ -88,7 +88,6 @@ export default function Home() {
         <section id="home">
           <div className="main-container">
             <motion.div
-              className="image"
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -98,7 +97,7 @@ export default function Home() {
                 alt="Chandni Gupta"
                 width={200}
                 height={300}
-                className="rounded-lg"
+                className="rounded-lg image" // Moved className here
               />
             </motion.div>
             <div className="content">
@@ -407,7 +406,7 @@ export default function Home() {
                     borderRadius: '10px',
                     padding: '20px',
                     boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-                    display: 'flex',       // Make it a flex container
+                    display: 'flex',        // Make it a flex container
                     flexDirection: 'column' // Stack children vertically
                   }}
                   variants={itemVariants}
@@ -445,7 +444,7 @@ export default function Home() {
                     borderRadius: '10px',
                     padding: '20px',
                     boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-                    display: 'flex',       // Make it a flex container
+                    display: 'flex',        // Make it a flex container
                     flexDirection: 'column' // Stack children vertically
                   }}
                   variants={itemVariants}

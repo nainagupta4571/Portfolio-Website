@@ -2,7 +2,7 @@
 
 This is the source code for my personal portfolio website built with **Next.js**, **TypeScript**, and **Tailwind CSS**. It showcases my work, skills, and background as a [your profession, e.g. “Web Developer”].
 
-👉 **[Live Website](https://your-portfolio-url.com)**
+👉 **[Live Website](https://portfolio-website-lajg.vercel.app/)**
 
 ---
 

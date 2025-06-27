@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Head from "next/head";
 import { FaGithub, FaLinkedin, FaEnvelope, FaCode, FaPhoneAlt, FaMapMarkerAlt, FaInstagram, FaTwitter } from "react-icons/fa";
-import { motion, HTMLMotionProps } from 'framer-motion'; // Ensure HTMLMotionProps is imported
+import { motion, HTMLMotionProps } from 'framer-motion';
 import { useState } from "react";
 
 export default function Home() {
@@ -13,7 +13,7 @@ export default function Home() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1, // Delay between children animations
+        staggerChildren: 0.1,
       },
     },
   };
@@ -52,7 +52,7 @@ export default function Home() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.05, // Small delay for each letter
+        staggerChildren: 0.05,
       },
     },
   };
@@ -97,16 +97,15 @@ export default function Home() {
                 alt="Chandni Gupta"
                 width={200}
                 height={300}
-                className="rounded-lg image" // This was already correctly fixed
+                className="rounded-lg image"
               />
             </motion.div>
             <div className="content">
-              {/* NEW: Letter by letter animation for "Hey I'm Chandni" */}
               <motion.h1
                 variants={textContainerVariants}
                 initial="hidden"
                 animate="visible"
-                style={{ display: 'inline-block' }} // Ensure span tags are inline
+                style={{ display: 'inline-block' }}
               >
                 {"Hey I'm " .split("").map((char, index) => (
                   <motion.span key={char + "-" + index} variants={letterVariants}>
@@ -122,12 +121,11 @@ export default function Home() {
                 </span>
               </motion.h1>
 
-              {/* NEW: Letter by letter animation for "I'm Developer" */}
               <motion.h2
                 variants={textContainerVariants}
                 initial="hidden"
                 animate="visible"
-                style={{ display: 'inline-block' }} // Ensure span tags are inline
+                style={{ display: 'inline-block' }}
               >
                 {"I'm "}
                 <span className="name-highlight">
@@ -142,13 +140,12 @@ export default function Home() {
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 1.5 }} // Added a delay
+                transition={{ duration: 0.6, delay: 1.5 }}
               >
                 Skilled in ReactJS, NodeJS, and Spring Boot, with a strong foundation in Data
                 Structures and Algorithms. Passionate about building efficient and scalable applications.
               </motion.p>
 
-              {/* Corrected: Applying direct type assertion on the component props */}
               <motion.div {...{ className: "social-links" } as HTMLMotionProps<'div'>}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -168,12 +165,11 @@ export default function Home() {
                 </a>
               </motion.div>
 
-              <motion.a
-                href="/Chandni_Gupta_SDE.pdf"
-                download
+              {/* Corrected: Applying direct type assertion for motion.a */}
+              <motion.a {...{ href: "/Chandni_Gupta_SDE.pdf", download: true } as HTMLMotionProps<'a'>}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 2.1 }} // Added a delay
+                transition={{ duration: 0.6, delay: 2.1 }}
               >
                 <button>Download CV</button>
               </motion.a>
@@ -209,7 +205,6 @@ export default function Home() {
               </motion.p>
             </div>
 
-            {/* Updated Tab Navigation to match header style */}
             <motion.div
               style={{
                 display: 'flex',
@@ -267,7 +262,7 @@ export default function Home() {
                       <div className="bar-bg">
                         <motion.div
                           {...{ className: "bar-fill" } as HTMLMotionProps<'div'>}
-                          style={{ width: 0 }} // Start with 0 width for animation
+                          style={{ width: 0 }}
                           animate={{ width: skill.level }}
                           transition={{ duration: 1.5, ease: "easeOut" }}
                         ></motion.div>
@@ -290,8 +285,8 @@ export default function Home() {
                         <svg viewBox="0 0 36 36" className="circular-chart">
                           <path className="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
                           <motion.path
-                            className="circle" as="path" // 'as' is correct for SVG elements
-                            strokeDasharray="0, 100" // Start with 0 for animation
+                            className="circle" as="path"
+                            strokeDasharray="0, 100"
                             animate={{ strokeDasharray: `${skill.percent}, 100` }}
                             transition={{ duration: 1.5, ease: "easeOut" }}
                             d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
@@ -405,8 +400,8 @@ export default function Home() {
                       borderRadius: '10px',
                       padding: '20px',
                       boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-                      display: 'flex',        // Make it a flex container
-                      flexDirection: 'column' // Stack children vertically
+                      display: 'flex',
+                      flexDirection: 'column'
                     }
                   } as HTMLMotionProps<'div'>}
                   variants={itemVariants}
@@ -428,8 +423,8 @@ export default function Home() {
                     style={{
                       color: 'rgb(109,67,0)',
                       textDecoration: 'none',
-                      marginTop: 'auto', // Push to the bottom
-                      alignSelf: 'flex-start' // Align to the left
+                      marginTop: 'auto',
+                      alignSelf: 'flex-start'
                     }}
                   >
                     View on GitHub
@@ -444,8 +439,8 @@ export default function Home() {
                       borderRadius: '10px',
                       padding: '20px',
                       boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-                      display: 'flex',        // Make it a flex container
-                      flexDirection: 'column' // Stack children vertically
+                      display: 'flex',
+                      flexDirection: 'column'
                     }
                   } as HTMLMotionProps<'div'>}
                   variants={itemVariants}
@@ -467,15 +462,15 @@ export default function Home() {
                     style={{
                       color: 'rgb(109,67,0)',
                       textDecoration: 'none',
-                      marginTop: 'auto', // Push to the bottom
-                      alignSelf: 'flex-start' // Align to the left
+                      marginTop: 'auto',
+                      alignSelf: 'flex-start'
                     }}
                   >
                     View on GitHub
                   </a>
                 </motion.div>
 
-                {/* Project 3 - No change here as per your request */}
+                {/* Project 3 */}
                 <motion.div {...{
                     style: {
                       width: '300px',

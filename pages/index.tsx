@@ -446,7 +446,7 @@ export default function Home() {
                   variants={itemVariants}
                 >
                   <Image
-                    src="/chatapp.png"
+                    src="/chatapp cpoy.png"
                     alt="Chat Application"
                     width={300}
                     height={200}

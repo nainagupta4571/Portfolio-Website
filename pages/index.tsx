@@ -283,7 +283,6 @@ export default function Home() {
                       <motion.div key={skill.name} {...{ className: "radial-bar" } as HTMLMotionProps<'div'>} variants={itemVariants}>
                         <svg viewBox="0 0 36 36" className="circular-chart">
                           <path className="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                          {/* Corrected: Removed as="path" from motion.path */}
                           <motion.path
                             className="circle"
                             strokeDasharray="0, 100"
@@ -353,11 +352,12 @@ export default function Home() {
                   <p className="text-gray-700 font-medium mb-1">ACKO</p>
                   <p className="text-gray-600 text-sm mb-2">Jan 2024 - Jan 2025</p>
                   <ul className="list-disc ml-6 text-gray-700 text-sm space-y-1">
-                    <motion.li variants={itemVariants} as="li">Developed real-time dashboards for operations visibility.</motion.li>
-                    <motion.li variants={itemVariants} as="li">Created reusable components using React, TypeScript, and Tailwind CSS.</motion.li>
-                    <motion.li variants={itemVariants} as="li">Integrated secure APIs using Spring Boot with efficient backend logic.</motion.li>
-                    <motion.li variants={itemVariants} as="li">Enhanced UX with lazy loading and performance optimization.</motion.li>
-                    <motion.li variants={itemVariants} as="li">Collaborated actively in agile sprints and peer code reviews.</motion.li>
+                    {/* Corrected: Applying HTMLMotionProps<'li'> to motion.li and removing 'as' prop */}
+                    <motion.li {...{ variants: itemVariants } as HTMLMotionProps<'li'>}>Developed real-time dashboards for operations visibility.</motion.li>
+                    <motion.li {...{ variants: itemVariants } as HTMLMotionProps<'li'>}>Created reusable components using React, TypeScript, and Tailwind CSS.</motion.li>
+                    <motion.li {...{ variants: itemVariants } as HTMLMotionProps<'li'>}>Integrated secure APIs using Spring Boot with efficient backend logic.</motion.li>
+                    <motion.li {...{ variants: itemVariants } as HTMLMotionProps<'li'>}>Enhanced UX with lazy loading and performance optimization.</motion.li>
+                    <motion.li {...{ variants: itemVariants } as HTMLMotionProps<'li'>}>Collaborated actively in agile sprints and peer code reviews.</motion.li>
                   </ul>
                 </div>
               </motion.div>

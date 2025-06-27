@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Head from "next/head";
 import { FaGithub, FaLinkedin, FaEnvelope, FaCode, FaPhoneAlt, FaMapMarkerAlt, FaInstagram, FaTwitter } from "react-icons/fa";
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
 import { useState } from "react";
 
 export default function Home() {

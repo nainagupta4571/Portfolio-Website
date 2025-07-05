@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Head from "next/head";
 import { FaGithub, FaLinkedin, FaEnvelope, FaCode, FaPhoneAlt, FaMapMarkerAlt, FaInstagram, FaTwitter } from "react-icons/fa";
-import { motion, HTMLMotionProps } from 'framer-motion';
+import { motion , HTMLMotionProps} from 'framer-motion';
 import { useState } from "react";
 
 export default function Home() {
@@ -13,7 +13,7 @@ export default function Home() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: 0.1, // Delay between children animations
       },
     },
   };
@@ -52,7 +52,7 @@ export default function Home() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.05,
+        staggerChildren: 0.05, // Small delay for each letter
       },
     },
   };
@@ -87,7 +87,7 @@ export default function Home() {
       <div style={{ paddingLeft: "130px", paddingRight: "80px", marginTop: "40px" }}>
         <section id="home">
           <div className="main-container">
-            <motion.div
+            <motion.div {...{className:"image"}as HTMLMotionProps<'div'>}
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -97,17 +97,18 @@ export default function Home() {
                 alt="Chandni Gupta"
                 width={200}
                 height={300}
-                className="rounded-lg image"
+                className="rounded-lg"
               />
             </motion.div>
             <div className="content">
+              {/* NEW: Letter by letter animation for "Hey I'm Chandni" */}
               <motion.h1
                 variants={textContainerVariants}
                 initial="hidden"
                 animate="visible"
-                style={{ display: 'inline-block' }}
+                style={{ display: 'inline-block' }} // Ensure span tags are inline
               >
-                {"Hey I'm " .split("").map((char, index) => (
+                {"Hey I'm ".split("").map((char, index) => (
                   <motion.span key={char + "-" + index} variants={letterVariants}>
                     {char}
                   </motion.span>
@@ -121,11 +122,12 @@ export default function Home() {
                 </span>
               </motion.h1>
 
+              {/* NEW: Letter by letter animation for "I'm Developer" */}
               <motion.h2
                 variants={textContainerVariants}
                 initial="hidden"
                 animate="visible"
-                style={{ display: 'inline-block' }}
+                style={{ display: 'inline-block' }} // Ensure span tags are inline
               >
                 {"I'm "}
                 <span className="name-highlight">
@@ -140,16 +142,17 @@ export default function Home() {
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 1.5 }}
+                transition={{ duration: 0.6, delay: 1.5 }} // Added a delay
               >
                 Skilled in ReactJS, NodeJS, and Spring Boot, with a strong foundation in Data
                 Structures and Algorithms. Passionate about building efficient and scalable applications.
               </motion.p>
 
-              <motion.div {...{ className: "social-links" } as HTMLMotionProps<'div'>}
+              <motion.div
+                {...{className:"social-links"  } as HTMLMotionProps<'div'>} 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 1.8 }}
+                transition={{ duration: 0.6, delay: 1.8 }} // Added a delay
               >
                 <a href="https://github.com/nainagupta4571" target="_blank" aria-label="GitHub">
                   <i><FaGithub /></i>
@@ -165,10 +168,10 @@ export default function Home() {
                 </a>
               </motion.div>
 
-              <motion.a {...{ href: "/Chandni_Gupta_SDE.pdf", download: true } as HTMLMotionProps<'a'>}
+               <motion.a {...{ href: "/Chandni_Gupta_SDE.pdf", download: true } as HTMLMotionProps<'a'>}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 2.1 }}
+                transition={{ duration: 0.6, delay: 2.1 }} // Added a delay
               >
                 <button>Download CV</button>
               </motion.a>
@@ -204,6 +207,7 @@ export default function Home() {
               </motion.p>
             </div>
 
+            {/* Updated Tab Navigation to match header style */}
             <motion.div
               style={{
                 display: 'flex',
@@ -241,7 +245,7 @@ export default function Home() {
 
             {/* Skills Section */}
             {activeTab === 'Skills' && (
-              <motion.div {...{ className: "skills-container" } as HTMLMotionProps<'div'>}
+             <motion.div {...{ className: "skills-container" } as HTMLMotionProps<'div'>}
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
@@ -256,12 +260,12 @@ export default function Home() {
                     { name: 'ReactJS', level: '75%' },
                     { name: 'Next.js', level: '70%' },
                   ].map(skill => (
-                    <motion.div key={skill.name} {...{ className: "line-bar-skill" } as HTMLMotionProps<'div'>} variants={itemVariants}>
+                    <motion.div key={skill.name} {...{ className: "line-bar-skill" } as HTMLMotionProps<'div'>} variants={itemVariants}>                 
                       <label>{skill.name}</label>
                       <div className="bar-bg">
                         <motion.div
                           {...{ className: "bar-fill" } as HTMLMotionProps<'div'>}
-                          style={{ width: 0 }}
+                          style={{ width: 0 }} // Start with 0 width for animation
                           animate={{ width: skill.level }}
                           transition={{ duration: 1.5, ease: "easeOut" }}
                         ></motion.div>
@@ -285,7 +289,7 @@ export default function Home() {
                           <path className="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
                           <motion.path
                             className="circle"
-                            strokeDasharray="0, 100"
+                            strokeDasharray="0, 100" // Start with 0 for animation
                             animate={{ strokeDasharray: `${skill.percent}, 100` }}
                             transition={{ duration: 1.5, ease: "easeOut" }}
                             d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
@@ -310,7 +314,7 @@ export default function Home() {
                 viewport={{ once: false, amount: 0.3 }}
               >
                 <div className="flex flex-col md:flex-row gap-6 justify-center items-stretch text-left">
-                  <motion.div {...{ className: "bg-white rounded-lg shadow-sm p-6 flex-1 max-w-sm border border-gray-100" } as HTMLMotionProps<'div'>} variants={itemVariants}>
+                  <motion.div {...{className:"bg-white rounded-lg shadow-sm p-6 flex-1 max-w-sm border border-gray-100"} as HTMLMotionProps<'div'>} variants={itemVariants}>
                     <h3 className="text-xl font-semibold text-gray-800 mb-1">B.Tech in Computer Science</h3>
                     <p className="text-gray-700 font-medium mb-1">Galgotias College of Engineering and Technology, Greater Noida</p>
                     <p className="text-gray-600 text-sm mb-1">2021 - 2025</p>
@@ -318,7 +322,7 @@ export default function Home() {
                       CGPA: <span className="font-semibold text-gray-800">8.7 / 10</span>
                     </p>
                   </motion.div>
-                  <motion.div {...{ className: "bg-white rounded-lg shadow-sm p-6 flex-1 max-w-sm border border-gray-100" } as HTMLMotionProps<'div'>} variants={itemVariants}>
+                  <motion.div {...{className:"bg-white rounded-lg shadow-sm p-6 flex-1 max-w-sm border border-gray-100"} as HTMLMotionProps<'div'>} variants={itemVariants}>
                     <h3 className="text-xl font-semibold text-gray-800 mb-1">Senior Secondary (12th CBSE)</h3>
                     <p className="text-gray-700 font-medium mb-1">Woodland Academy, Gorakhpur U.P. </p>
                     <p className="text-gray-600 text-sm mb-1">2019-2020</p>
@@ -326,7 +330,7 @@ export default function Home() {
                       Percentage: <span className="font-semibold text-gray-800">82.8%</span>
                     </p>
                   </motion.div>
-                  <motion.div {...{ className: "bg-white rounded-lg shadow-sm p-6 flex-1 max-w-sm border border-gray-100" } as HTMLMotionProps<'div'>} variants={itemVariants}>
+                  <motion.div {...{className:"bg-white rounded-lg shadow-sm p-6 flex-1 max-w-sm border border-gray-100"} as HTMLMotionProps<'div'>} variants={itemVariants}>
                     <h3 className="text-xl font-semibold text-gray-800 mb-1">Secondary (10th CBSE)</h3>
                     <p className="text-gray-700 font-medium mb-1">RPM Academy, Gorakhpur U.P. </p>
                     <p className="text-gray-600 text-sm mb-1">2017-2018</p>
@@ -352,12 +356,11 @@ export default function Home() {
                   <p className="text-gray-700 font-medium mb-1">ACKO</p>
                   <p className="text-gray-600 text-sm mb-2">Jan 2024 - Jan 2025</p>
                   <ul className="list-disc ml-6 text-gray-700 text-sm space-y-1">
-                    {/* Corrected: Applying HTMLMotionProps<'li'> to motion.li and removing 'as' prop */}
-                    <motion.li {...{ variants: itemVariants } as HTMLMotionProps<'li'>}>Developed real-time dashboards for operations visibility.</motion.li>
-                    <motion.li {...{ variants: itemVariants } as HTMLMotionProps<'li'>}>Created reusable components using React, TypeScript, and Tailwind CSS.</motion.li>
-                    <motion.li {...{ variants: itemVariants } as HTMLMotionProps<'li'>}>Integrated secure APIs using Spring Boot with efficient backend logic.</motion.li>
-                    <motion.li {...{ variants: itemVariants } as HTMLMotionProps<'li'>}>Enhanced UX with lazy loading and performance optimization.</motion.li>
-                    <motion.li {...{ variants: itemVariants } as HTMLMotionProps<'li'>}>Collaborated actively in agile sprints and peer code reviews.</motion.li>
+                    <motion.li variants={itemVariants}>Developed real-time dashboards for operations visibility.</motion.li>
+                    <motion.li variants={itemVariants}>Created reusable components using React, TypeScript, and Tailwind CSS.</motion.li>
+                    <motion.li variants={itemVariants}>Integrated secure APIs using Spring Boot with efficient backend logic.</motion.li>
+                    <motion.li variants={itemVariants}>Enhanced UX with lazy loading and performance optimization.</motion.li>
+                    <motion.li variants={itemVariants}>Collaborated actively in agile sprints and peer code reviews.</motion.li>
                   </ul>
                 </div>
               </motion.div>
@@ -393,17 +396,16 @@ export default function Home() {
                 viewport={{ once: false, amount: 0.3 }}
               >
                 {/* Project 1 */}
-                <motion.div {...{
-                    style: {
-                      width: '300px',
-                      background: 'white',
-                      borderRadius: '10px',
-                      padding: '20px',
-                      boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-                      display: 'flex',
-                      flexDirection: 'column'
-                    }
-                  } as HTMLMotionProps<'div'>}
+                <motion.div
+                  style={{
+                    width: '300px',
+                    background: 'white',
+                    borderRadius: '10px',
+                    padding: '20px',
+                    boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
+                    display: 'flex',       // Make it a flex container
+                    flexDirection: 'column' // Stack children vertically
+                  }}
                   variants={itemVariants}
                 >
                   <Image
@@ -423,8 +425,8 @@ export default function Home() {
                     style={{
                       color: 'rgb(109,67,0)',
                       textDecoration: 'none',
-                      marginTop: 'auto',
-                      alignSelf: 'flex-start'
+                      marginTop: 'auto', // Push to the bottom
+                      alignSelf: 'flex-start' // Align to the left
                     }}
                   >
                     View on GitHub
@@ -432,17 +434,16 @@ export default function Home() {
                 </motion.div>
 
                 {/* Project 2 */}
-                <motion.div {...{
-                    style: {
-                      width: '300px',
-                      background: 'white',
-                      borderRadius: '10px',
-                      padding: '20px',
-                      boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-                      display: 'flex',
-                      flexDirection: 'column'
-                    }
-                  } as HTMLMotionProps<'div'>}
+                <motion.div
+                  style={{
+                    width: '300px',
+                    background: 'white',
+                    borderRadius: '10px',
+                    padding: '20px',
+                    boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
+                    display: 'flex',       // Make it a flex container
+                    flexDirection: 'column' // Stack children vertically
+                  }}
                   variants={itemVariants}
                 >
                   <Image
@@ -462,24 +463,23 @@ export default function Home() {
                     style={{
                       color: 'rgb(109,67,0)',
                       textDecoration: 'none',
-                      marginTop: 'auto',
-                      alignSelf: 'flex-start'
+                      marginTop: 'auto', // Push to the bottom
+                      alignSelf: 'flex-start' // Align to the left
                     }}
                   >
                     View on GitHub
                   </a>
                 </motion.div>
 
-                {/* Project 3 */}
-                <motion.div {...{
-                    style: {
-                      width: '300px',
-                      background: 'white',
-                      borderRadius: '10px',
-                      padding: '20px',
-                      boxShadow: '0 4px 8px rgba(0,0,0,0.1)'
-                    }
-                  } as HTMLMotionProps<'div'>}
+                {/* Project 3 - No change here as per your request */}
+                <motion.div
+                  style={{
+                    width: '300px',
+                    background: 'white',
+                    borderRadius: '10px',
+                    padding: '20px',
+                    boxShadow: '0 4px 8px rgba(0,0,0,0.1)'
+                  }}
                   variants={itemVariants}
                 >
                   <Image
@@ -521,21 +521,22 @@ export default function Home() {
             </motion.h1>
 
             {/* Contact Info Section */}
-            <motion.div {...{ className: "flex flex-col md:flex-row justify-around items-center mb-16 text-center" } as HTMLMotionProps<'div'>}
+            <motion.div
+              {...{className:"flex flex-col md:flex-row justify-around items-center mb-16 text-center" } as HTMLMotionProps<'div'>} 
               variants={containerVariants}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: false, amount: 0.3 }}
             >
               {/* Email */}
-              <motion.div {...{ className: "flex flex-col items-center" } as HTMLMotionProps<'div'>} variants={itemVariants}>
+              <motion.div {...{className:"flex flex-col items-center"} as HTMLMotionProps<'div'>} variants={itemVariants}>
                 <FaEnvelope style={{ fontSize: '2rem', color: 'rgb(109, 67, 0)' }} className="mb-2" />
                 <h3>Email</h3>
                 <p>nainagupta4571@gmail.com</p>
               </motion.div>
 
               {/* Phone */}
-              <motion.div {...{ className: "flex flex-col items-center" } as HTMLMotionProps<'div'>} variants={itemVariants}>
+              <motion.div {...{ className: "flex flex-col items-center"} as HTMLMotionProps<'div'>} variants={itemVariants}>
                 <FaPhoneAlt style={{ fontSize: '2rem', color: 'rgb(109, 67, 0)' }} className="mb-2" />
                 <h3>Phone</h3>
                 <p>+91 854 307 8447</p>
@@ -575,7 +576,7 @@ export default function Home() {
                   <FaLinkedin />
                 </a>
                 <a
-                  href="https://www.instagram.com/chandni_gupta27?utm_source=qr&igsh=dW42cTFuY2ExaGZi"
+                  href="https://www.instagramotion.com/chandni_gupta27?utm_source=qr&igsh=dW42cTFuY2ExaGZi"
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{ fontSize: '2rem', color: 'rgb(109, 67, 0)' }}
@@ -590,3 +591,7 @@ export default function Home() {
     </>
   );
 }
+
+
+
+
